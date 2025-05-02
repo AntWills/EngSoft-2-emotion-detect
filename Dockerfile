@@ -1,15 +1,23 @@
-FROM public.ecr.aws/lambda/python:3.13
+# Imagem base oficial do Python
+FROM python:3.10-slim
 
+# Diretório de trabalho no container
+WORKDIR /app
 
-# Copy function code to the container
-COPY ./src/ ./
-COPY ./requirements.txt ./
+# Copia os arquivos para dentro do container
+COPY ./src/ ./src/
+COPY requirements.txt .
 
-RUN dnf install -y gcc gcc-c++
-RUN pip install --upgrade pip
+# Instala dependências do sistema (ex: para compilar pacotes como numpy, etc.)
+RUN apt-get update && apt-get install -y gcc
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Instala dependências Python
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Set the command to run the Lambda function
-CMD ["handlers.handler_emotion.get_emotion_chain"]
+# Expõe a porta usada pelo Uvicorn
+EXPOSE 8000
+
+ENV PYTHONPATH=/app/src
+
+# Comando para iniciar o servidor
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
