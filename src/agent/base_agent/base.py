@@ -56,7 +56,7 @@ class BaseAgentDetectEmotion(EntityChain):
         Run the chain with the given input.
         """
         chain = self.chain()
-        print(f"\nAQUI-4\n: {input}")
+        # print(f"\nAQUI-4\n: {input}")
         return chain.invoke(input)
 
 

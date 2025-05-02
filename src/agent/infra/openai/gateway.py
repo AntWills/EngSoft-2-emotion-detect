@@ -22,7 +22,7 @@ class GatewayOpenAi:
         Create and return the LLM client.
         """
         # Initialize the LLM client with the settings
-        print(f"\nSettings: {settings}\n")
+        # print(f"\nSettings: {settings}\n")
 
         llm = ChatOpenAI(
             base_url=settings.api_base_url,
