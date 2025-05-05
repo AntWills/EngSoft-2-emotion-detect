@@ -6,12 +6,13 @@ class Settings(BaseSettings):
     openai_api_key: str = Field(
         default="",
     )
+
     openai_model: str = Field(
         default="gpt-4o-mini",
     )
 
     api_base_url: str = Field(
-        default="https://openrouter.ai/api/v1"
+        default="qwen/qwen3-30b-a3b:free"
     )
 
     prompt_template: str = Field(
