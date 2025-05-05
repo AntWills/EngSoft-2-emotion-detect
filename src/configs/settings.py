@@ -8,11 +8,11 @@ class Settings(BaseSettings):
     )
 
     openai_model: str = Field(
-        default="gpt-4o-mini",
+        default="qwen/qwen3-30b-a3b:free",
     )
 
     api_base_url: str = Field(
-        default="qwen/qwen3-30b-a3b:free"
+        default="https://openrouter.ai/api/v1"
     )
 
     prompt_template: str = Field(
